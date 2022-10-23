@@ -151,7 +151,7 @@ function populateTextarea() {
 {
   /* ---- ПРОМИСЫ ---- */
 
-  console.log('before promise');
+  // console.log('before promise');
 
   const promise = new Promise((resolve, reject) => {
     resolve('Good');
@@ -175,30 +175,208 @@ function populateTextarea() {
 
   promise
     .then(result => {
-      console.log(result); // ✅ выполняется, если всё хорошо (нет ошибок)
+      result; // ✅ выполняется, если всё хорошо (нет ошибок)
       return '100';
     })
     .then(x => {
-      console.log(x); // ✅ выполняется, если всё хорошо (нет ошибок)
+      x; // ✅ выполняется, если всё хорошо (нет ошибок)
       return 200;
     })
     .then(y => {
-      console.log(y); // ✅ выполняется, если всё хорошо (нет ошибок)
+      y; // ✅ выполняется, если всё хорошо (нет ошибок)
     })
     .catch(err => {
-      console.log(err); // ⚠️ выполняется только в случае ошибки
+      err; // ⚠️ выполняется только в случае ошибки
     })
     .finally(() => {
-      console.log('will be done anyway'); // ⏩ выполняется в любом случае
+      'will be done anyway'; // ⏩ выполняется в любом случае
     });
 
-  console.log('after promise');
+  // console.log('after promise');
 
   const makeOrder = dish => {
     return Promise.resolve(`All good. Here is your ${dish}`); // применяется там где не бывает ошибок
   };
 
-  makeOrder('bread').then(result => console.log(result));
+  makeOrder('bread').then(result => result);
 
-  console.log('end');
+  // console.log('end');
+}
+
+{
+  function squareSum(numbers) {
+    let sum = 0;
+    numbers.map(e => Math.pow(e, 2)).map(e => (sum += e));
+
+    return sum;
+  }
+
+  // console.log(squareSum([1, 2]));
+  // console.log(squareSum([0, 3, 4, 5]));
+  // console.log(squareSum([]));
+}
+
+{
+  // ==== вариант 1
+
+  // function alphabetPosition(str) {
+  //   const strSplit = str.toLowerCase().split('');
+  //   const resArr = [];
+
+  //   for (let i = 0; i < strSplit.length; i += 1) {
+  //     if (strSplit[i].charCodeAt() >= 97 && strSplit[i].charCodeAt() <= 122) {
+  //       resArr.push(strSplit[i].charCodeAt() - 96);
+  //     }
+  //   }
+
+  //   return resArr.join(' ');
+  // }
+
+  // ==== вариант 2
+
+  // function alphabetPosition(str) {
+  //   const strSplit = str.toLowerCase();
+  //   const resArr = [];
+
+  //   for (let i = 0; i < strSplit.length; i += 1) {
+  //     if (strSplit[i].charCodeAt() >= 97 && strSplit[i].charCodeAt() <= 122) {
+  //       resArr.push(strSplit[i].charCodeAt() - 96);
+  //     }
+  //   }
+
+  //   return resArr.join(' ');
+  // }
+
+  // ==== вариант 3
+
+  function alphabetPosition(str) {
+    const strSplit = str.toLowerCase();
+    let resStr = '';
+
+    for (let i = 0; i < strSplit.length; i += 1) {
+      if (strSplit[i].charCodeAt() >= 97 && strSplit[i].charCodeAt() <= 122) {
+        resStr = resStr + (strSplit[i].charCodeAt() - 96) + ' ';
+      }
+    }
+
+    return resStr.trim();
+  }
+
+  // console.log(alphabetPosition("The sunset sets at twelve o' clock 1."));
+}
+
+{
+  function isIsogram(str) {
+    const strLowerCase = str.toLowerCase();
+    let repeat = '';
+
+    for (let i = 0; i < strLowerCase.length; i++) {
+      for (let y = i + 1; y < strLowerCase.length; y++) {
+        if (strLowerCase[i] === strLowerCase[y]) {
+          repeat = repeat + strLowerCase[i];
+        }
+      }
+    }
+
+    if (repeat !== '') {
+      return false;
+    }
+
+    return true;
+  }
+
+  // console.log(isIsogram('Dermatoglyphics'));
+  // console.log(isIsogram('aba'));
+  // console.log(isIsogram('moOse'));
+}
+
+{
+  function bouncingBall(h, bounce, window) {
+    let result = 1;
+    if (h <= 0 || bounce <= 0 || bounce >= 1 || window >= h) {
+      return -1;
+    }
+
+    setParametersOfBouncingBall(h, bounce, window);
+
+    function setParametersOfBouncingBall(h, bounce, window) {
+      calculatesTheHeightOfTheBallBounce(h, bounce, window);
+
+      function calculatesTheHeightOfTheBallBounce(h, bounce, window) {
+        const ballBounceHeight = h * bounce;
+
+        if (ballBounceHeight > window) {
+          result += 2;
+        } else {
+          return;
+        }
+
+        setParametersOfBouncingBall(ballBounceHeight, bounce, window);
+      }
+
+      return;
+    }
+
+    return result;
+  }
+
+  // console.log(bouncingBall(3, 0.66, 1.5));
+  // console.log(bouncingBall(3, 1, 1.5));
+  // console.log(bouncingBall(30, 0.66, 1.5));
+  // console.log(bouncingBall(4, 0.25, 1));
+}
+
+{
+  function bouncingBall(h, bounce, window) {
+    if (h <= 0 || bounce <= 0 || bounce >= 1 || window >= h) {
+      return -1;
+    }
+
+    const newHeight = h * bounce;
+    return bouncingBall(newHeight, bounce, window) + 2;
+  }
+
+  // console.log(bouncingBall(3, 0.66, 1.5));
+  // console.log(bouncingBall(3, 1, 1.5));
+  // console.log(bouncingBall(30, 0.66, 1.5));
+  // console.log(bouncingBall(4, 0.25, 1));
+}
+
+{
+  function sumTwoSmallestNumbers(numbers) {
+    numbers.sort((a, b) => a - b);
+    return numbers[0] + numbers[1];
+  }
+
+  // console.log(sumTwoSmallestNumbers([8, 2, 3, 5, 9, 4, 7]));
+  // console.log(sumTwoSmallestNumbers([5, 8, 12, 19, 22]));
+}
+
+{
+  function friend(friends) {
+    return friends.filter(e => e.length === 4);
+  }
+
+  // console.log(friend(['Ryan', 'Kieran', 'Jason', 'Yous']));
+}
+
+{
+  // function longest(s1, s2) {
+  //   const c = [...s1, ...s2];
+  //   const d = [];
+  //   for (let i = 0; i < c.length; i++) {
+  //     if (d.some(e => e === c[i])) {
+  //       continue;
+  //     }
+  //     d.push(c[i]);
+  //   }
+
+  //   return d.sort().join('');
+  // }
+
+  function longest(s1, s2) {
+    return [...new Set(s1 + s2)].sort().join('');
+  }
+
+  // console.log(longest('ahsdbdhsbddgrdcvd', 'jggejkgfndfujvhdxvdrkp'));
 }
