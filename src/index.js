@@ -404,8 +404,51 @@ function populateTextarea() {
     return index;
   }
 
-  console.log(findEvenIndex([1, 100, 50, -51, 1, 1])); // 1
-  console.log(findEvenIndex([1, 2, 3, 4, 3, 2, 1])); // 3
-  console.log(findEvenIndex([10, -80, 10, 10, 10, 15, 35])); // 0
-  console.log(findEvenIndex([1, 2, 3, 4, 5, 6])); // -1
+  // console.log(findEvenIndex([1, 100, 50, -51, 1, 1])); // 1
+  // console.log(findEvenIndex([1, 2, 3, 4, 3, 2, 1])); // 3
+  // console.log(findEvenIndex([10, -80, 10, 10, 10, 15, 35])); // 0
+  // console.log(findEvenIndex([1, 2, 3, 4, 5, 6])); // -1
+}
+
+{
+  function solution(str, ending) {
+    return str.slice(str.length - ending.length, str.length) === ending;
+  }
+
+  // =========== лучший вариант с codewars
+
+  // function solution(str, ending){
+  //   return str.endsWith(ending);
+  // }
+
+  // console.log(solution('abc', 'bc')); // returns true
+  // console.log(solution('abc', 'd')); // returns false
+}
+
+{
+  function likes(names) {
+    let massage = '';
+
+    if (names.length === 0) {
+      massage = `no one likes this`;
+    } else if (names.length === 1) {
+      massage = `${names[0]} likes this`;
+    } else if (names.length === 2) {
+      massage = `${names[0]} and ${names[1]} like this`;
+    } else if (names.length === 3) {
+      massage = `${names[0]}, ${names[1]} and ${names[2]} like this`;
+    } else if (names.length > 3) {
+      massage = `${names[0]}, ${names[1]} and ${
+        names.length - 2
+      } others like this`;
+    }
+
+    return massage;
+  }
+
+  console.log(likes([])); //  "no one likes this"
+  console.log(likes(['Peter'])); //  "Peter likes this"
+  console.log(likes(['Jacob', 'Alex'])); //  "Jacob and Alex like this"
+  console.log(likes(['Max', 'John', 'Mark'])); //  "Max, John and Mark like this"
+  console.log(likes(['Alex', 'Jacob', 'Mark', 'Max'])); //  "Alex, Jacob and 2 others like this"
 }
