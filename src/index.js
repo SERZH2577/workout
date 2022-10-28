@@ -380,3 +380,32 @@ function populateTextarea() {
 
   // console.log(longest('ahsdbdhsbddgrdcvd', 'jggejkgfndfujvhdxvdrkp'));
 }
+
+{
+  function findEvenIndex(arr) {
+    let leftSum = 0;
+    let rightSum = 0;
+    let index = -1;
+
+    for (let i = 0; i < arr.length; i += 1) {
+      for (let j = i + 1; j < arr.length; j += 1) {
+        rightSum = rightSum + arr[j];
+      }
+
+      if (leftSum === rightSum) {
+        return (index = i);
+      } else {
+        rightSum = 0;
+      }
+
+      leftSum = leftSum + arr[i];
+    }
+
+    return index;
+  }
+
+  console.log(findEvenIndex([1, 100, 50, -51, 1, 1])); // 1
+  console.log(findEvenIndex([1, 2, 3, 4, 3, 2, 1])); // 3
+  console.log(findEvenIndex([10, -80, 10, 10, 10, 15, 35])); // 0
+  console.log(findEvenIndex([1, 2, 3, 4, 5, 6])); // -1
+}
