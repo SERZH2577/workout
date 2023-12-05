@@ -452,3 +452,114 @@ function populateTextarea() {
   // console.log(likes(['Max', 'John', 'Mark'])); //  "Max, John and Mark like this"
   // console.log(likes(['Alex', 'Jacob', 'Mark', 'Max'])); //  "Alex, Jacob and 2 others like this"
 }
+
+{
+  function validatePIN(pin) {
+    return (pin.length === 4 || pin.length === 6) && /^[0-9]+$/.test(pin);
+  }
+
+  // console.log(validatePIN('1234')); // true
+  // console.log(validatePIN('12345')); // false
+  // console.log(validatePIN('a234')); // false
+  // console.log(validatePIN('0000')); // true
+  // console.log(validatePIN('-234')); // false
+  // console.log(validatePIN('1.34')); // false
+  // console.log(validatePIN('23.0')); // false
+}
+
+{
+  function getDivisorsCnt(n) {
+    let result = 0;
+
+    for (let i = 1; i <= n; i += 1) {
+      if (Number.isInteger(n / i)) {
+        result += 1;
+      }
+    }
+
+    return result;
+  }
+
+  // console.log(getDivisorsCnt(4));
+}
+
+{
+  function isValidWalk(walk) {
+    let n = 0;
+    let s = 0;
+    let w = 0;
+    let e = 0;
+
+    for (let i = 0; i < walk.length; i++) {
+      if (walk[i] === 'n') {
+        n += 1;
+      } else if (walk[i] === 's') {
+        s += 1;
+      } else if (walk[i] === 'w') {
+        w += 1;
+      } else if (walk[i] === 'e') {
+        e += 1;
+      }
+    }
+
+    if (walk.length === 10 && n === s && w === e) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // console.log(isValidWalk(['n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 's']));
+  // console.log(
+  //   isValidWalk(['w', 'e', 'w', 'e', 'w', 'e', 'w', 'e', 'w', 'e', 'w', 'e'])
+  // );
+}
+
+{
+  function duplicates(srt) {
+    const arr = [];
+
+    for (let i = 0; i < str.length; i += 1) {
+      for (let j = i + 1; j < str.length; j += 1) {
+        if (condition) {
+        }
+      }
+    }
+  }
+  // console.log(duplicates('abcde')); // 0 # no characters repeats more than once
+  // console.log(duplicates('aabbcde')); // 2 # 'a' and 'b'
+  // console.log(duplicates('aabBcde')); // 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
+  // console.log(duplicates('indivisibility')); // 1 # 'i' occurs six times
+  // console.log(duplicates('Indivisibilities')); // 2 # 'i' occurs seven times and 's' occurs twice
+  // console.log(duplicates('aA11')); // 2 # 'a' and '1'
+  // console.log(duplicates('ABBA')); // 2 # 'A' and 'B' each occur twice
+}
+
+{
+  const barcodeArr = [
+    046100698500332072, 046100698500331891, 046100698500336728,
+    046100698500420175, 046100698500419780, 046100698500340930,
+    046100698500258808, 046100698500430730, 046100698500418936,
+    046100698500424135, 046100698500423336, 046100698500421608,
+    046100698500423633, 046100698500264052, 046100698500276635,
+    046100698500427549, 046100698500368798, 046100698500379879,
+    046100698500437968, 046100698500377783, 046100698500377509,
+    046100698500327207, 046100698500409712, 046100698500403178,
+    046100698500320222, 046100698500368590, 046100698500371323,
+    046100698500426115, 046100698500416642,
+  ];
+  function checksForMatches(arr) {
+    let amountOfNumbers = 0;
+    for (let i = 0; i < arr.length; i += 1) {
+      amountOfNumbers += 1;
+      for (let j = i + 1; j < arr.length; j += 1) {
+        if (arr[i] === arr[j]) {
+          return `есть повтор ${arr[i]}`;
+        }
+      }
+    }
+    return `Повторов нет. Всего ${amountOfNumbers} уникальных номеров.`;
+  }
+
+  console.log(checksForMatches(barcodeArr));
+}
